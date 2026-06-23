@@ -13,6 +13,7 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @AppStorage(Constants.displayMode) private var displayMode = DisplayMode.system
+    @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen = true
 
     var body: some View {
         Form {
@@ -21,6 +22,10 @@ struct GeneralSettingsView: View {
                     Text(mode.description).tag(mode)
                 }
             }
+
+            Toggle(isOn: $displayLaunchScreen, label: {
+                Text("Display launch screen")
+            })
         }
     }
 }

@@ -14,6 +14,7 @@ import SwiftUI
 @main
 struct iPadTemplateApp: App {
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .system
+    @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen = true
 
     @State private var showLaunch = true
     @State private var sharedState = SharedState()
@@ -21,18 +22,33 @@ struct iPadTemplateApp: App {
     var body: some Scene {
         WindowGroup {
             if showLaunch {
-                LaunchScreen()
-                    .task {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                            withAnimation {
-                                showLaunch = false
+                Group {
+                    // If the launch screen u=is enabled, show it
+                    if displayLaunchScreen {
+                        LaunchScreen()
+                            .task {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                    withAnimation {
+                                        showLaunch = false
+                                    }
+                                }
                             }
-                        }
-
-                        // While the launch screen is up, initialise the
-                        // storage providers for local and iCloud (and any other) files.
-                        await sharedState.initialise()
+                    } else {
+                        // If the launch screen is not enabled, just exit. We cannot
+                        // use EmptyView() because the .task will not run.
+                        Text("")
+                            .task {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                    showLaunch = false
+                                }
+                            }
                     }
+                }
+                .task {
+                    // While the launch screen is up, initialise the
+                    // storage providers for local and iCloud (and any other) files.
+                    await sharedState.initialise()
+                }
             } else {
                 HomeView()
                     .preferredColorScheme(displayMode.colorScheme)
