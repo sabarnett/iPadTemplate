@@ -22,15 +22,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                NavigationLink(destination: {
-                    GeneralSettingsView()
-                }, label: {
-                    Label("General", systemImage: "gearshape")
-                        .padding(.vertical, 4)
-                        .foregroundStyle(.primary)
-                })
+                generalSettingsOption()
             }
-            .listStyle(.plain)
             .navigationTitle("Planner Settings")
             .toolbar {
                 ToolbarImageButton(placement: .primaryAction,
@@ -59,6 +52,15 @@ struct SettingsView: View {
         }
     }
 
+    func generalSettingsOption() -> some View {
+        NavigationLink(destination: {
+            GeneralSettingsView()
+        }, label: {
+            Label("General", systemImage: "gearshape")
+                .padding(.vertical, 4)
+                .foregroundStyle(.primary)
+        })
+    }
 }
 
 #Preview {
