@@ -15,6 +15,7 @@ import SwiftUI
 struct iPadTemplateApp: App {
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .system
     @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen = true
+    @AppStorage(Constants.launchScreenDisplayTime) private var launchScreenDisplayTime = 5
 
     @State private var showLaunch = true
     @State private var sharedState = SharedState()
@@ -27,7 +28,7 @@ struct iPadTemplateApp: App {
                     if displayLaunchScreen {
                         LaunchScreen()
                             .task {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() +  Double(launchScreenDisplayTime)) {
                                     withAnimation {
                                         showLaunch = false
                                     }

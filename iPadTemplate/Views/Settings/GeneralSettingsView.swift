@@ -14,6 +14,7 @@ import SwiftUI
 struct GeneralSettingsView: View {
     @AppStorage(Constants.displayMode) private var displayMode = DisplayMode.system
     @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen = true
+    @AppStorage(Constants.launchScreenDisplayTime) private var launchScreenDisplayTime = 5
 
     var body: some View {
         Form {
@@ -26,6 +27,12 @@ struct GeneralSettingsView: View {
             Toggle(isOn: $displayLaunchScreen, label: {
                 Text("Display launch screen")
             })
+
+            Picker("Launch Screen Delay Time (seconds)", selection: $launchScreenDisplayTime) {
+                ForEach(2...10, id: \.self) { time in
+                    Text("\(time)").tag(time)
+                }
+            }
         }
     }
 }

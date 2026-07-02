@@ -21,5 +21,6 @@ struct Constants {
     // Application level settings keys
     static let displayMode = "colorMode"
     static let displayLaunchScreen = "displaylaunchScreen"
+    static let launchScreenDisplayTime = "launchScreenDisplayTime"
 }
 
