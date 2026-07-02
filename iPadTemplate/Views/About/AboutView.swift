@@ -74,7 +74,7 @@ struct AboutView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About Planner")
             .toolbar {
-                ToolbarImageButton(placement: .cancellationAction,
+                ToolbarImageButton(placement: .primaryAction,
                                    systemImage: "xmark.app") { dismiss() }
             }
         }

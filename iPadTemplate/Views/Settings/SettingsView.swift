@@ -33,7 +33,7 @@ struct SettingsView: View {
             .listStyle(.plain)
             .navigationTitle("Planner Settings")
             .toolbar {
-                ToolbarImageButton(placement: .cancellationAction,
+                ToolbarImageButton(placement: .primaryAction,
                                    systemImage: "xmark.app") { dismiss() }
             }
             .preferredColorScheme(displayStyle)
