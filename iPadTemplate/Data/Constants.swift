@@ -11,7 +11,7 @@
 
 import SwiftUI
 
-struct Constants {
+enum Constants {
 
     // TODO: Customise your home page URL
     // About box
