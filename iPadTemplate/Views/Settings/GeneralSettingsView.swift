@@ -17,26 +17,81 @@ struct GeneralSettingsView: View {
     @AppStorage(Constants.launchScreenDisplayTime) private var launchScreenDisplayTime = 5
 
     var body: some View {
-        Form {
-            Picker("Display mode", selection: $displayMode) {
-                ForEach(DisplayMode.allCases) { mode in
-                    Text(mode.description).tag(mode)
+        List {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Appearance").font(.title).bold()
+
+                HStack(spacing: 20) {
+                    SelectionButton(
+                        systemImageName: "circle.lefthalf.filled",
+                        caption: "System",
+                        isCurrent: displayMode == .system
+                    ) { displayMode = .system }
+
+                    SelectionButton(
+                        systemImageName: "sun.max.fill",
+                        caption: "Light",
+                        isCurrent: displayMode == .light
+                    ) { displayMode = .light }
+
+                    SelectionButton(
+                        systemImageName: "moon.stars",
+                        caption: "Dark",
+                        isCurrent: displayMode == .dark
+                    ) { displayMode = .dark }
                 }
             }
+            .listRowSeparator(.hidden)
 
-            Toggle(isOn: $displayLaunchScreen, label: {
-                Text("Display launch screen")
-            })
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Launch Screen").font(.title).bold()
 
-            Picker("Launch Screen Delay Time (seconds)", selection: $launchScreenDisplayTime) {
-                ForEach(2...10, id: \.self) { time in
-                    Text("\(time)").tag(time)
+                Toggle(isOn: $displayLaunchScreen, label: {
+                    Text("Display launch screen")
+                })
+
+                Picker("Launch Screen Delay Time (seconds)", selection: $launchScreenDisplayTime) {
+                    ForEach(2...10, id: \.self) { time in
+                        Text("\(time)").tag(time)
+                    }
                 }
             }
+            .listRowSeparator(.hidden)
         }
+        .listStyle(.plain)
     }
 }
 
-#Preview {
+struct SelectionButton: View {
+    let systemImageName: String
+    let caption: String
+    let isCurrent: Bool
+
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: { onTap() }, label: {
+            VStack(spacing: 15) {
+                Image(systemName: systemImageName)
+                    .scaleEffect(1.2)
+                Text(caption)
+                    .font(.body)
+                    .foregroundStyle(.primary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(isCurrent
+                          ? .blue.opacity(0.4)
+                          : .clear)
+                    .stroke(.blue)
+            )
+        })
+        .buttonStyle(.plain)
+    }
+}
+
+#Preview(traits: .sizeThatFitsLayout) {
     GeneralSettingsView()
 }
