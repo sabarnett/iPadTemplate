@@ -55,6 +55,7 @@ struct SettingsView: View {
     func generalSettingsOption() -> some View {
         NavigationLink(destination: {
             GeneralSettingsView()
+                .padding()
         }, label: {
             Label("General", systemImage: "gearshape")
                 .padding(.vertical, 4)
