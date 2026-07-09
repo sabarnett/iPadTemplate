@@ -27,6 +27,10 @@ disabled_rules: # rule identifiers to exclude from running
 #  - variable_name
 #included: # paths to include during linting. `--path` is ignored if present. takes precendence over `excluded`.
 
+type_name:
+  excluded:
+    - iPadTemplateApp
+
 excluded: # paths to ignore during linting. overridden by `included`.
   - Carthage
   - Pods

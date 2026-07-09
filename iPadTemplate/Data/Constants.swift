@@ -13,7 +13,7 @@ import SwiftUI
 
 enum Constants {
 
-    // TODO: Customise your home page URL
+    // ToCustomise: Set your own URL
     // About box
     static let homeUrl: URL = URL(string: "http://www.sabarnett.co.uk")!
     static let homeAddress: String = "sabarnett.co.uk"
@@ -23,4 +23,3 @@ enum Constants {
     static let displayLaunchScreen = "displaylaunchScreen"
     static let launchScreenDisplayTime = "launchScreenDisplayTime"
 }
-

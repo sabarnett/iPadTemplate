@@ -14,7 +14,7 @@ import Foundation
 @Observable
 class SharedState {
 
-    // TODO: This is the 'global' view model. You will need to add content
+    // ToCustomise: This is the 'global' view model. You will need to add content
     func initialise() async {
         print("Initialise shared state")
     }

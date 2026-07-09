@@ -20,14 +20,14 @@ struct DetailView: View {
                 .navigationTitle(selection ?? "Detail View")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-// TODO: Define your toolbar items here
-//                    ToolbarItem(placement: .cancellationAction) {
-//                        Button(action: {
-//                            print("Cancel action")
-//                        }, label:   {
-//                            Image(systemName: "gear")
-//                        })
-//                    }
+                    // ToCustomise:  Define your toolbar items here
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button(action: {
+                            print("Cancel action")
+                        }, label: {
+                            Image(systemName: "gear")
+                        })
+                    }
                 }
         }
     }
