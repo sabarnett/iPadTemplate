@@ -79,3 +79,31 @@ Project Settings
 There is default text in there for the template, but it should be reviewed or replaced.
 
 Everything else is just code... have fun
+
+The structure of the app is very simple. The iPadTemplateApp.app file starts out
+displaying the LaunchScreen.swift file to show the opening image. The LaunchScreen 
+will auto-select which image is shown based on whether the screen width is greater
+than or less thasn the screen height.
+
+After a short period of time (user configurable) the opening image is closed and
+the HomeView is displayed. It is  passed an instance of SharedState via the
+environment.
+
+HomeView is a NavigationSplitView that displays the SidebarView and the DetailView.
+
+Icons are provided via the HomeView to display settings, via the SettingsView, and
+information on the app, via the AboutView.
+
+SettingsView contains the app settings. The template comes with two settings grouped
+under the General Settings banner:
+
+* Display mode to change the app betweek Light Mode, Dark Mode and System Mode 
+which mirrors the current system setting. In System Mode the app will change
+between light and dark mode automatically.
+
+* Launch screen settings control whether the launch screen is shown or not and,
+if shows, for how long.
+
+This is all defined in the GeneralSettingsView, which ca be used as a template for
+creating your own settings.
+
