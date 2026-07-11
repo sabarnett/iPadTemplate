@@ -16,7 +16,7 @@ struct SidebarView: View {
   @State private var listContent = [
     "Item 1",
     "Item 2",
-    "Item 3",
+    "Item 3"
   ]
 
   var body: some View {

@@ -18,8 +18,7 @@ import SwiftUI
 /// so it can be used to build selection lists. Equatable allows settings to be compared
 /// and CustomStringConvertible gives us the text to display in pickers.
 enum DisplayMode: String, Identifiable, CaseIterable, Equatable,
-  CustomStringConvertible
-{
+  CustomStringConvertible {
   case light
   case dark
   case system
