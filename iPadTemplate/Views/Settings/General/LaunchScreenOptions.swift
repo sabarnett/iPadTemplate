@@ -12,22 +12,30 @@
 import SwiftUI
 
 struct LaunchScreenOptions: View {
-    @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen = true
-    @AppStorage(Constants.launchScreenDisplayTime) private var launchScreenDisplayTime = 5
+  @AppStorage(Constants.displayLaunchScreen) private var displayLaunchScreen =
+    true
+  @AppStorage(Constants.launchScreenDisplayTime) private
+    var launchScreenDisplayTime = 5
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Launch Screen").font(.title).bold()
+  var body: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Text("Launch Screen").font(.title).bold()
 
-            Toggle(isOn: $displayLaunchScreen, label: {
-                Text("Display launch screen")
-            })
-
-            Picker("Launch Screen Delay Time (seconds)", selection: $launchScreenDisplayTime) {
-                ForEach(2...10, id: \.self) { time in
-                    Text("\(time)").tag(time)
-                }
-            }
+      Toggle(
+        isOn: $displayLaunchScreen,
+        label: {
+          Text("Display launch screen")
         }
+      )
+
+      Picker(
+        "Launch Screen Delay Time (seconds)",
+        selection: $launchScreenDisplayTime
+      ) {
+        ForEach(2...10, id: \.self) { time in
+          Text("\(time)").tag(time)
+        }
+      }
     }
+  }
 }

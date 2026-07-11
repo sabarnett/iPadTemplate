@@ -17,34 +17,36 @@ import SwiftUI
 /// mirror the current state of the Mac. We define this as Identifiable and CaseIterable
 /// so it can be used to build selection lists. Equatable allows settings to be compared
 /// and CustomStringConvertible gives us the text to display in pickers.
-enum DisplayMode: String, Identifiable, CaseIterable, Equatable, CustomStringConvertible {
-    case light
-    case dark
-    case system
+enum DisplayMode: String, Identifiable, CaseIterable, Equatable,
+  CustomStringConvertible
+{
+  case light
+  case dark
+  case system
 
-    var id: String {
-        return self.description
-    }
+  var id: String {
+    return self.description
+  }
 
-    var description: String {
-        switch self {
-        case .light:
-            return "Light"
-        case .dark:
-            return "Dark"
-        case .system:
-            return "System"
-        }
+  var description: String {
+    switch self {
+    case .light:
+      return "Light"
+    case .dark:
+      return "Dark"
+    case .system:
+      return "System"
     }
+  }
 
-    var colorScheme: ColorScheme? {
-        switch self {
-        case .light:
-            .light
-        case .dark:
-            .dark
-        case .system:
-            nil
-        }
+  var colorScheme: ColorScheme? {
+    switch self {
+    case .light:
+      .light
+    case .dark:
+      .dark
+    case .system:
+      nil
     }
+  }
 }

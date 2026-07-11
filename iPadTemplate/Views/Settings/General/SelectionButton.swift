@@ -12,33 +12,40 @@
 import SwiftUI
 
 struct SelectionButton: View {
-    let systemImageName: String
-    let caption: String
-    let isCurrent: Bool
+  let systemImageName: String
+  let caption: String
+  let isCurrent: Bool
 
-    let onTap: () -> Void
+  let onTap: () -> Void
 
-    var body: some View {
-        Button(action: { onTap() }, label: {
-            VStack(spacing: 15) {
-                Image(systemName: systemImageName)
-                    .scaleEffect(1.2)
-                Text(caption)
-                    .font(.body)
-                    .foregroundStyle(.primary)
-            }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(isCurrent
-                          ? .blue.opacity(0.4)
-                          : .gray.opacity(0.25))
-                    .stroke(isCurrent
-                            ? .blue
-                            : .gray)
+  var body: some View {
+    Button(
+      action: { onTap() },
+      label: {
+        VStack(spacing: 15) {
+          Image(systemName: systemImageName)
+            .scaleEffect(1.2)
+          Text(caption)
+            .font(.body)
+            .foregroundStyle(.primary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(
+          RoundedRectangle(cornerRadius: 10)
+            .fill(
+              isCurrent
+                ? .blue.opacity(0.4)
+                : .gray.opacity(0.25)
             )
-        })
-        .buttonStyle(.plain)
-    }
+            .stroke(
+              isCurrent
+                ? .blue
+                : .gray
+            )
+        )
+      }
+    )
+    .buttonStyle(.plain)
+  }
 }

@@ -14,25 +14,26 @@ import SwiftUI
 /// Create a toolbar button.
 struct ToolbarImageButton: ToolbarContent {
 
-    var placement: ToolbarItemPlacement = .automatic
-    var role: ButtonRole = .close
-    var systemImage: String
-    var disabled: Bool = false
-    var onButtonPress: () -> Void
+  var placement: ToolbarItemPlacement = .automatic
+  var role: ButtonRole = .close
+  var systemImage: String
+  var disabled: Bool = false
+  var onButtonPress: () -> Void
 
-    var body: some ToolbarContent {
-        ToolbarItem(placement: placement) {
-            if #available(iOS 26.0, *) {
-                Button(role: role, action: { onButtonPress() })
-                    .glassEffect()
-                    .disabled(disabled)
-            } else {
-                Button(role: role,
-                       action: { onButtonPress() },
-                       label: { Image(systemName: systemImage).scaleEffect(1.2) }
-                )
-                .disabled(disabled)
-            }
-        }
+  var body: some ToolbarContent {
+    ToolbarItem(placement: placement) {
+      if #available(iOS 26.0, *) {
+        Button(role: role, action: { onButtonPress() })
+          .glassEffect()
+          .disabled(disabled)
+      } else {
+        Button(
+          role: role,
+          action: { onButtonPress() },
+          label: { Image(systemName: systemImage).scaleEffect(1.2) }
+        )
+        .disabled(disabled)
+      }
     }
+  }
 }

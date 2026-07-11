@@ -12,29 +12,29 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @Binding var selection: String?
-    @State private var listContent = [
-        "Item 1",
-        "Item 2",
-        "Item 3"
-    ]
+  @Binding var selection: String?
+  @State private var listContent = [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+  ]
 
-    var body: some View {
-        NavigationStack {
-            List(selection: $selection) {
-                ForEach(listContent, id: \.self) { item in
-                    Section(item) {
-                        Text(item)
-                            .tag(item)
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .navigationTitle("Sidebar")
+  var body: some View {
+    NavigationStack {
+      List(selection: $selection) {
+        ForEach(listContent, id: \.self) { item in
+          Section(item) {
+            Text(item)
+              .tag(item)
+          }
         }
+      }
+      .listStyle(.plain)
+      .navigationTitle("Sidebar")
     }
+  }
 }
 
 #Preview {
-    SidebarView(selection: .constant(nil))
+  SidebarView(selection: .constant(nil))
 }

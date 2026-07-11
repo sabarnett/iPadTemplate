@@ -13,13 +13,13 @@ import SwiftUI
 
 enum Constants {
 
-    // ToCustomise: Set your own URL
-    // About box
-    static let homeUrl: URL = URL(string: "http://www.sabarnett.co.uk")!
-    static let homeAddress: String = "sabarnett.co.uk"
+  // ToCustomise: Set your own URL
+  // About box
+  static let homeUrl: URL = URL(string: "http://www.sabarnett.co.uk")!
+  static let homeAddress: String = "sabarnett.co.uk"
 
-    // Application level settings keys
-    static let displayMode = "colorMode"
-    static let displayLaunchScreen = "displaylaunchScreen"
-    static let launchScreenDisplayTime = "launchScreenDisplayTime"
+  // Application level settings keys
+  static let displayMode = "colorMode"
+  static let displayLaunchScreen = "displaylaunchScreen"
+  static let launchScreenDisplayTime = "launchScreenDisplayTime"
 }

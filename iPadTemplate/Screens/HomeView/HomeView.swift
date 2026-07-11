@@ -13,66 +13,85 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @State private var hasData = false
-    @State private var showAbout = false
-    @State private var showSettings = false
+  @State private var hasData = false
+  @State private var showAbout = false
+  @State private var showSettings = false
 
-    @State private var selection: String?
+  @State private var selection: String?
 
-    var body: some View {
-        NavigationSplitView(sidebar: {
-            SidebarView(selection: $selection)
-                .toolbar {
-                    ToolbarItemGroup(placement: .topBarLeading) {
-                        settingsButton
-                    }
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        Spacer()
-                        aboutButton
-                    }
-                }
-        }, detail: {
-            if selection != nil {
-                DetailView(selection: $selection)
-            } else {
-                ContentUnavailableView(
-                    "No selection",
-                    systemImage: "list.triangle",
-                    description: Text("Nothing has been selected for display.")
-                )
-
+  var body: some View {
+    NavigationSplitView(
+      sidebar: {
+        SidebarView(selection: $selection)
+          .toolbar {
+            ToolbarItemGroup(placement: .topBarLeading) {
+              settingsButton
             }
-        })
-        .sheet(isPresented: $showAbout) {
-            AboutView()
-                .presentationSizing(.form.fitted(horizontal: false, vertical: true))
+            ToolbarItemGroup(placement: .bottomBar) {
+              Spacer()
+              aboutButton
+            }
+          }
+      },
+      detail: {
+        if selection != nil {
+          DetailView(selection: $selection)
+        } else {
+          ContentUnavailableView(
+            "No selection",
+            systemImage: "list.triangle",
+            description: Text(
+              "Nothing has been selected for display."
+            )
+          )
+
         }
-        .sheet(isPresented: $showSettings) { SettingsView() }
+      }
+    )
+    .sheet(isPresented: $showAbout) {
+      AboutView()
+        .presentationSizing(
+          .form.fitted(horizontal: false, vertical: true)
+        )
     }
+    .sheet(isPresented: $showSettings) { SettingsView() }
+  }
 
-    var settingsButton: some View {
-        Button(action: {
-            showSettings = true
-        }, label: {
-            Label(title: { Text("Settings") }, icon: {
-                Image(systemName: "gearshape")
-            })
-        })
-        .buttonStyle(.glass)
-    }
+  var settingsButton: some View {
+    Button(
+      action: {
+        showSettings = true
+      },
+      label: {
+        Label(
+          title: { Text("Settings") },
+          icon: {
+            Image(systemName: "gearshape")
+          }
+        )
+      }
+    )
+    .buttonStyle(.glass)
+  }
 
-    var aboutButton: some View {
-        Button(action: {
-            showAbout = true
-        }, label: {
-            Label(title: { Text("About") }, icon: {
-                Image(systemName: "info")
-            })
-        })
-        .buttonStyle(.glass)
-    }
+  var aboutButton: some View {
+    Button(
+      action: {
+        showAbout = true
+      },
+      label: {
+        Label(
+          title: { Text("About") },
+          icon: {
+            Image(systemName: "info")
+          }
+        )
+      }
+    )
+    .buttonStyle(.glass)
+  }
 }
 
 #Preview {
-    HomeView()
+  HomeView()
 }

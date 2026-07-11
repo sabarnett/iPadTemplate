@@ -13,19 +13,19 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
 
-    var body: some View {
-        List {
-            AppearanceSelection()
-                .listRowSeparator(.hidden)
+  var body: some View {
+    List {
+      AppearanceSelection()
+        .listRowSeparator(.hidden)
 
-            LaunchScreenOptions()
-                .listRowSeparator(.hidden)
-        }
-        .listStyle(.plain)
-        .navigationTitle("General Settings")
+      LaunchScreenOptions()
+        .listRowSeparator(.hidden)
     }
+    .listStyle(.plain)
+    .navigationTitle("General Settings")
+  }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    GeneralSettingsView()
+  GeneralSettingsView()
 }
