@@ -22,6 +22,10 @@ struct iPadTemplateApp: App {
   @State private var showLaunch = true
   @State private var sharedState = SharedState()
 
+  var displayTime: Double {
+    launchScreenDisplayTime == 0 ? 10.0 : Double(launchScreenDisplayTime)
+  }
+
   var body: some Scene {
     WindowGroup {
       if showLaunch {
@@ -31,8 +35,7 @@ struct iPadTemplateApp: App {
             LaunchScreen()
               .task {
                 DispatchQueue.main.asyncAfter(
-                  deadline: .now()
-                    + Double(launchScreenDisplayTime)
+                  deadline: .now() + displayTime
                 ) {
                   withAnimation {
                     showLaunch = false
@@ -56,6 +59,7 @@ struct iPadTemplateApp: App {
           // While the launch screen is up, initialise the
           // storage providers for local and iCloud (and any other) files.
           await sharedState.initialise()
+          if launchScreenDisplayTime == 0 { showLaunch = false }
         }
       } else {
         HomeView()
